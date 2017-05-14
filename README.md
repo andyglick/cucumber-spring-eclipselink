@@ -2,8 +2,10 @@
 [![CircleCI](https://circleci.com/gh/andyglick/cucumber-spring-eclipselink.svg?style=shield)](https://circleci.com/gh/andyglick/cucumber-spring-eclipselink)
 [![Build Status](https://travis-ci.org/andyglick/cucumber-spring-eclipselink.png)](https://travis-ci.org/andyglick/cucumber-spring-eclipselink)
 [![Coverage Status](https://coveralls.io/repos/andyglick/cucumber-spring-eclipselink/badge.png)](https://coveralls.io/r/andyglick/cucumber-spring-eclipselink)
-[![Dependency Status](https://www.versioneye.com/user/projects/570d35bffcd19a0045440b35/badge.svg?style=flat)](https://www.versioneye.com/user/projects/570d35bffcd19a0045440b35)
+[![Dependency Status](https://www.versioneye.com/user/projects/591264d8da0c25002fa1ad3d/badge.svg?style=flat)](https://www.versioneye.com/user/projects/591264d8da0c25002fa1ad3d)
 [![Coverity Scan Build Status](https://img.shields.io/coverity/scan/7280.svg)](https://scan.coverity.com/projects/andyglick-cucumber-spring-eclipselink)
+
+[![Stories in Ready](https://badge.waffle.io/andyglick/cucumber-spring-eclipselink.png?label=ready&title=Ready)](https://waffle.io/andyglick/cucumber-spring-eclipselink?utm_source=badge)
 
 Cucumber, Spring and Eclipselink with Spring Data JPA
 =====================================================

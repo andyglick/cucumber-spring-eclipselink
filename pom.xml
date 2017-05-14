@@ -46,10 +46,6 @@
     </pluginRepository>
   </pluginRepositories>
 
-  <prerequisites>
-    <maven>${maven.version}</maven>
-  </prerequisites>
-
   <properties>
     <rhndgPVUDc8WePh6camuhe3yKKpW3NM5/>
     <arquillian.version>1.1.13.Final</arquillian.version>
@@ -57,7 +53,6 @@
     <buildNumber>1</buildNumber>
     <checkerframework.version>2.1.11</checkerframework.version>
     <chronos.version>1.1.1</chronos.version>
-    <clover.plugin.version>4.2.0-SNAPSHOT</clover.plugin.version>
     <cucumber.jvm.version>1.2.5</cucumber.jvm.version>
     <cucumber.report.title>Cucumber w/ Spring, Spring Data JPA and Eclipselink</cucumber.report.title>
     <cucumber.reporting.version>3.7.0</cucumber.reporting.version>
@@ -79,6 +74,7 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.version>3.5.0</maven.version>
+    <openclover.version>4.2.0</openclover.version>
     <openwebbeans.version>1.7.3</openwebbeans.version>
     <plexus.compiler.version>2.8.1</plexus.compiler.version>
     <plexus.utils.version>3.0.24</plexus.utils.version>
@@ -265,11 +261,11 @@
 
     <plugins>
 
-      <!--<plugin>-->
-        <!--<groupId>org.openclover</groupId>-->
-        <!--<artifactId>clover-maven-plugin</artifactId>-->
-        <!--<version>${clover.plugin.version}</version>-->
-      <!--</plugin>-->
+      <plugin>
+        <groupId>org.openclover</groupId>
+        <artifactId>clover-maven-plugin</artifactId>
+        <version>${openclover.version}</version>
+      </plugin>
 
       <plugin>
         <groupId>org.owasp</groupId>
@@ -377,7 +373,10 @@
         </executions>
         <configuration>
           <rules>
-            <DependencyConvergence/>
+            <requireMavenVersion>
+              <version>3.5.0</version>
+            </requireMavenVersion>
+            <dependencyConvergence/>
             <bannedDependencies>
               <searchTransitive>true</searchTransitive>
               <excludes>
@@ -763,51 +762,51 @@
         </dependency>
       </dependencies>
     </profile>
-    <profile>
-      <id>duplicate-finder</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.basepom.maven</groupId>
-            <artifactId>duplicate-finder-maven-plugin</artifactId>
-            <version>1.2.1</version>
-            <configuration>
-              <exceptions>
-                <exception>
-                  <conflictingDependencies>
-                    <dependency>
-                      <groupId>io.magentys</groupId>
-                      <artifactId>cherry-junit</artifactId>
-                    </dependency>
-                    <dependency>
-                      <groupId>io.magentys</groupId>
-                      <artifactId>cherry</artifactId>
-                    </dependency>
-                  </conflictingDependencies>
-                  <classes>
-                    <class>io.magentys.AgentVerifier</class>
-                  </classes>
-                </exception>
-              </exceptions>
-              <ignoredResourcePatterns>
-                <ignoredResourcePattern>.*about\.html$</ignoredResourcePattern>
-                <ignoredResourcePattern>.*readme\.html$</ignoredResourcePattern>
-                <ignoredResourcePattern>.*changelog\.txt</ignoredResourcePattern>
-              </ignoredResourcePatterns>
-            </configuration>
-            <executions>
-              <execution>
-                <id>find-duplicates</id>
-                <phase>validate</phase>
-                <goals>
-                  <goal>check</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
+    <!--<profile>-->
+      <!--<id>duplicate-finder</id>-->
+      <!--<build>-->
+        <!--<plugins>-->
+          <!--<plugin>-->
+            <!--<groupId>org.basepom.maven</groupId>-->
+            <!--<artifactId>duplicate-finder-maven-plugin</artifactId>-->
+            <!--<version>1.2.1</version>-->
+            <!--<configuration>-->
+              <!--<exceptions>-->
+                <!--<exception>-->
+                  <!--<conflictingDependencies>-->
+                    <!--<dependency>-->
+                      <!--<groupId>io.magentys</groupId>-->
+                      <!--<artifactId>cherry-junit</artifactId>-->
+                    <!--</dependency>-->
+                    <!--<dependency>-->
+                      <!--<groupId>io.magentys</groupId>-->
+                      <!--<artifactId>cherry</artifactId>-->
+                    <!--</dependency>-->
+                  <!--</conflictingDependencies>-->
+                  <!--<classes>-->
+                    <!--<class>io.magentys.AgentVerifier</class>-->
+                  <!--</classes>-->
+                <!--</exception>-->
+              <!--</exceptions>-->
+              <!--<ignoredResourcePatterns>-->
+                <!--<ignoredResourcePattern>.*about\.html$</ignoredResourcePattern>-->
+                <!--<ignoredResourcePattern>.*readme\.html$</ignoredResourcePattern>-->
+                <!--<ignoredResourcePattern>.*changelog\.txt</ignoredResourcePattern>-->
+              <!--</ignoredResourcePatterns>-->
+            <!--</configuration>-->
+            <!--<executions>-->
+              <!--<execution>-->
+                <!--<id>find-duplicates</id>-->
+                <!--<phase>validate</phase>-->
+                <!--<goals>-->
+                  <!--<goal>check</goal>-->
+                <!--</goals>-->
+              <!--</execution>-->
+            <!--</executions>-->
+          <!--</plugin>-->
+        <!--</plugins>-->
+      <!--</build>-->
+    <!--</profile>-->
     <profile>
       <id>cucumber-jvm-parallel</id>
       <build>
@@ -945,6 +944,23 @@
 
   <dependencyManagement>
     <dependencies>
+
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-core</artifactId>
+        <version>${maven.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven.reporting</groupId>
+        <artifactId>maven-reporting-impl</artifactId>
+        <version>2.4</version>
+        <exclusions>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
 
       <dependency>
         <groupId>javax.validation</groupId>
@@ -1273,11 +1289,11 @@
 
   <dependencies>
 
-    <!--<dependency>-->
-      <!--<groupId>org.openclover</groupId>-->
-      <!--<artifactId>clover-maven-plugin</artifactId>-->
-      <!--<version>${clover.plugin.version}</version>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>org.openclover</groupId>
+      <artifactId>clover-maven-plugin</artifactId>
+      <version>${openclover.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>org.apache-extras.beanshell</groupId>
@@ -1285,18 +1301,18 @@
       <version>2.0b6</version>
     </dependency>
     
-    <dependency>
-      <groupId>org.checkerframework</groupId>
-      <artifactId>checker-qual</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.checkerframework</groupId>
-      <artifactId>checker</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.checkerframework</groupId>
-      <artifactId>jdk8</artifactId>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.checkerframework</groupId>-->
+      <!--<artifactId>checker-qual</artifactId>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.checkerframework</groupId>-->
+      <!--<artifactId>checker</artifactId>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.checkerframework</groupId>-->
+      <!--<artifactId>jdk8</artifactId>-->
+    <!--</dependency>-->
 
     <dependency>
       <groupId>com.google.code.findbugs</groupId>
@@ -1711,7 +1727,8 @@
     </dependency>
 
     <!-- wasn't paying attention - can't use envers with eclipselink -->
-    <!--<dependency>
+    <!--
+    <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-envers</artifactId>
       <version>${spring.data.envers.version}</version>
@@ -1721,7 +1738,8 @@
           <artifactId>jboss-logging</artifactId>
         </exclusion>
       </exclusions>
-    </dependency>-->
+    </dependency>
+    -->
 
     <dependency>
       <groupId>org.springframework.data</groupId>
