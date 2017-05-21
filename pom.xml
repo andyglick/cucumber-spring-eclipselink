@@ -46,6 +46,10 @@
     </pluginRepository>
   </pluginRepositories>
 
+  <prerequisites>
+    <maven>${maven.version}</maven>
+  </prerequisites>
+
   <properties>
     <rhndgPVUDc8WePh6camuhe3yKKpW3NM5/>
     <arquillian.version>1.1.13.Final</arquillian.version>
@@ -59,15 +63,15 @@
     <deltaspike.version>1.7.2</deltaspike.version>
     <eclipselink.version>2.6.4</eclipselink.version>
     <errorprone.compiler.version>2.0.19</errorprone.compiler.version>
-    <guava.version>21.0</guava.version>
-    <hibernate.validator.version>6.0.0.Alpha2</hibernate.validator.version>
+    <guava.version>22.0-rc1</guava.version>
+    <hibernate.validator.version>6.0.0.Beta1</hibernate.validator.version>
     <java.version>1.8</java.version>
     <javassist.version>3.22.0-CR1</javassist.version>
     <javax.persistence.version>2.1.1</javax.persistence.version>
     <jdepend.plugin.version>2.0</jdepend.plugin.version>
     <jooq.version>3.9.2</jooq.version>
     <junit.version>4.12</junit.version>
-    <logback.version>1.2.2</logback.version>
+    <logback.version>1.2.3</logback.version>
     <maven.artifact.version>3.5.0</maven.artifact.version>
     <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
     <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
@@ -84,7 +88,7 @@
     <shrinkwrap.descriptors.version>2.0.0</shrinkwrap.descriptors.version>
     <shrinkwrap.resolver.version>2.2.2</shrinkwrap.resolver.version>
     <shrinkwrap.version>1.2.6</shrinkwrap.version>
-    <slf4j.version>1.7.25</slf4j.version>
+    <slf4j.version>1.8.0-alpha2</slf4j.version>
     <spring.data.envers.version>1.0.5.RELEASE</spring.data.envers.version>
     <spring.data.jpa.version>1.11.3.RELEASE</spring.data.jpa.version>
     <springframework.version>4.3.8.RELEASE</springframework.version>
@@ -213,7 +217,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.0.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-help-plugin</artifactId>
@@ -365,7 +369,7 @@
         <executions>
           <execution>
             <id>enforce-dependency-convergence</id>
-            <phase>deploy</phase>
+            <phase>validate</phase>
             <goals>
               <goal>enforce</goal>
             </goals>
@@ -373,8 +377,11 @@
         </executions>
         <configuration>
           <rules>
+            <requireJavaVersion>
+              <version>${java.version}</version>
+            </requireJavaVersion>
             <requireMavenVersion>
-              <version>3.5.0</version>
+              <version>${maven.version}</version>
             </requireMavenVersion>
             <dependencyConvergence/>
             <bannedDependencies>
@@ -393,6 +400,7 @@
             </bannedDependencies>
             <banDuplicateClasses>
               <ignoreClasses>
+                <ignoreClass>module-info</ignoreClass>
                 <ignoreClass>com.sun.source.*</ignoreClass>
                 <!--<ignoreClass>com.sun.tools.*</ignoreClass>-->
                 <ignoreClass>javax.lang.*</ignoreClass>
@@ -485,42 +493,6 @@
           <aggregate>true</aggregate>
           <check/>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.9</version>
-        <executions>
-          <execution>
-            <id>prepare</id>
-            <phase>process-test-classes</phase>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>report</id>
-            <phase>test</phase>
-            <goals>
-              <goal>report</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>prepare-integration</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>prepare-agent-integration</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>verify</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>report-integration</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
 
       <plugin>
@@ -644,6 +616,79 @@
   </reporting>
 
   <profiles>
+    <profile>
+      <id>clover</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openclover</groupId>
+            <artifactId>clover-maven-plugin</artifactId>
+            <version>4.2.0</version>
+            <executions>
+              <execution>
+                <id>pretest</id>
+                <goals>
+                  <goal>setup</goal>
+                </goals>
+                <phase>process-test-classes</phase>
+              </execution>
+              <execution>
+                <id>verify</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>clover</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>jacoco</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.7.9</version>
+            <executions>
+              <execution>
+                <id>prepare</id>
+                <phase>process-test-classes</phase>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>report</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>prepare-integration</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                  <goal>prepare-agent-integration</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>verify</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>report-integration</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <profile>
       <id>donut</id>
       <build>
@@ -814,7 +859,7 @@
           <plugin>
             <groupId>com.github.temyers</groupId>
             <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-            <version>4.0.0</version>
+            <version>4.1.0</version>
             <executions>
               <execution>
                 <id>generateRunners</id>
@@ -877,7 +922,7 @@
         <dependency>
           <groupId>org.jboss.weld.se</groupId>
           <artifactId>weld-se-core</artifactId>
-          <version>3.0.0.CR2</version>
+          <version>3.0.0.Final</version>
           <exclusions>
             <exclusion>
               <groupId>org.jboss.spec.javax.el</groupId>
@@ -946,6 +991,12 @@
     <dependencies>
 
       <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>3.0.2</version>
+      </dependency>
+
+      <dependency>
         <groupId>org.apache.maven</groupId>
         <artifactId>maven-core</artifactId>
         <version>${maven.version}</version>
@@ -965,7 +1016,7 @@
       <dependency>
         <groupId>javax.validation</groupId>
         <artifactId>validation-api</artifactId>
-        <version>2.0.0.Beta1</version>
+        <version>2.0.0.Beta2</version>
       </dependency>
 
       <dependency>
@@ -997,7 +1048,7 @@
       <dependency>
         <groupId>javax.enterprise</groupId>
         <artifactId>cdi-api</artifactId>
-        <version>2.0-PFD2</version>
+        <version>2.0</version>
       </dependency>
 
       <dependency>
@@ -1287,32 +1338,14 @@
     </dependencies>
   </dependencyManagement>
 
+  <!-- ToDo investigate checkerframework -->
   <dependencies>
-
-    <dependency>
-      <groupId>org.openclover</groupId>
-      <artifactId>clover-maven-plugin</artifactId>
-      <version>${openclover.version}</version>
-    </dependency>
 
     <dependency>
       <groupId>org.apache-extras.beanshell</groupId>
       <artifactId>bsh</artifactId>
       <version>2.0b6</version>
     </dependency>
-    
-    <!--<dependency>-->
-      <!--<groupId>org.checkerframework</groupId>-->
-      <!--<artifactId>checker-qual</artifactId>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>org.checkerframework</groupId>-->
-      <!--<artifactId>checker</artifactId>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>org.checkerframework</groupId>-->
-      <!--<artifactId>jdk8</artifactId>-->
-    <!--</dependency>-->
 
     <dependency>
       <groupId>com.google.code.findbugs</groupId>
@@ -1458,7 +1491,6 @@
     <dependency>
       <groupId>javax.enterprise</groupId>
       <artifactId>cdi-api</artifactId>
-      <version>2.0-PFD2</version>
     </dependency>
 
     <dependency>
@@ -1712,7 +1744,7 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>3.7.0</version>
+      <version>3.8.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
