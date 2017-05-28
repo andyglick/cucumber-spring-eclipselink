@@ -16,6 +16,11 @@ Cucumber, Spring and Eclipselink with Spring Data JPA
 
 and now for some whining about the www.versioneye.com service ;-)
 
+please do not understand, I value the Versioneye service very highly; it
+is simply that I wish that it would work as the documentation describes,
+but I can live with the discrepancy. Life with Versioneye is certainly
+preferable to life without it :-)
+
 so, it turns out that versioneye has a feature that is supposed to allow
 you to specify the components whose version comparisons you can override
 if the tool is choosing to view the "correct" version as coming behind
