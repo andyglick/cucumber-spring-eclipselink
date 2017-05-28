@@ -63,6 +63,7 @@
     <deltaspike.version>1.7.2</deltaspike.version>
     <eclipselink.version>2.6.4</eclipselink.version>
     <errorprone.compiler.version>2.0.19</errorprone.compiler.version>
+    <fasterxml.jackson.version>2.8.8</fasterxml.jackson.version>
     <guava.version>22.0-rc1</guava.version>
     <hibernate.validator.version>6.0.0.Beta1</hibernate.validator.version>
     <java.version>1.8</java.version>
@@ -446,9 +447,6 @@
         <groupId>com.updateimpact</groupId>
         <artifactId>updateimpact-maven-plugin</artifactId>
         <version>1.0.12</version>
-        <configuration>
-
-        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-surefire-report-plugin</artifactId>
@@ -991,6 +989,27 @@
     <dependencies>
 
       <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${fasterxml.jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${fasterxml.jackson.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>com.google.code.findbugs</groupId>
         <artifactId>jsr305</artifactId>
         <version>3.0.2</version>
@@ -1340,6 +1359,12 @@
 
   <!-- ToDo investigate checkerframework -->
   <dependencies>
+
+    <dependency>
+      <groupId>com.getsentry.raven</groupId>
+      <artifactId>raven-logback</artifactId>
+      <version>8.0.3</version>
+    </dependency>
 
     <dependency>
       <groupId>org.apache-extras.beanshell</groupId>
