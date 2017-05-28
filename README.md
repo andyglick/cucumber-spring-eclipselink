@@ -4,6 +4,8 @@
 [![Coverage Status](https://coveralls.io/repos/andyglick/cucumber-spring-eclipselink/badge.png)](https://coveralls.io/r/andyglick/cucumber-spring-eclipselink)
 [![Dependency Status](https://www.versioneye.com/user/projects/591264d8da0c25002fa1ad3d/badge.svg?style=flat)](https://www.versioneye.com/user/projects/591264d8da0c25002fa1ad3d)
 [![Coverity Scan Build Status](https://img.shields.io/coverity/scan/7280.svg)](https://scan.coverity.com/projects/andyglick-cucumber-spring-eclipselink)
+
+[![Quality Gate](https://sonarqube.com/api/badges/gate?key=info.cukes:cucumber-spring-and-eclipselink)](https://sonarqube.com/dashboard/index/info.cukes:cucumber-spring-and-eclipselink)
 [![Quality Gate](https://sonarqube.com/api/badges/measure?key=info.cukes:cucumber-spring-and-eclipselink&metric=coverage)](https://sonarqube.com/dashboard/index/info.cukes:cucumber-spring-and-eclipselink)
 
 [![Stories in Ready](https://badge.waffle.io/andyglick/cucumber-spring-eclipselink.png?label=ready&title=Ready)](https://waffle.io/andyglick/cucumber-spring-eclipselink?utm_source=badge)
