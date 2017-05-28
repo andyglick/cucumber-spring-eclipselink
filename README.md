@@ -14,15 +14,15 @@
 Cucumber, Spring and Eclipselink with Spring Data JPA
 =====================================================
 
-and now for some whining ;-)
+and now for some whining about the www.versioneye.com service ;-)
 
-so, it turns out that versioneye has a
-feature that is supposed to allow you to specify the components whose
-version comparisons you can override if the tool is choosing to view the
-"correct" version as coming behind some other version when that isn't
-the case. It is called a "white list". And I have created a white list
-in which I placed the bcel java library's groupId and artifactId yet
-versioneye continues to claim that the dependency is out of date
+so, it turns out that versioneye has a feature that is supposed to allow
+you to specify the components whose version comparisons you can override
+if the tool is choosing to view the "correct" version as coming behind
+some other version when that isn't the case. It is called a "white
+list". And I have created a white list in which I placed the bcel java
+library's groupId and artifactId yet versioneye continues to claim that
+the dependency is out of date
 
 and coveralls states that only 56% of the code has been tested. Well
 that's somewhat misleading. Because I'm not a big fan of compile time
