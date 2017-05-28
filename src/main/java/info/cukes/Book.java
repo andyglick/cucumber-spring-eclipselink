@@ -5,31 +5,23 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.ImmutableList;
 
-import javax.enterprise.inject.Vetoed;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * <p>Book class.</p>
- *
- * @author glick
- */
+import javax.enterprise.inject.Vetoed;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 /*
  *  had attempted to use injection to insert an AuthorDelegate, couldn't figure out how to do that,
  *  attempted to use AspectJ static weaving using the aspectj-maven-plugin, couldn't get that to work and
@@ -44,6 +36,12 @@ import java.util.UUID;
  *  the issue is that because a JPA Entity is actually managed by the JPA container the "ordinary" dependency
  *  injectors don't have access to those classes. I'm not sure what the secret sauce needs to be. once again
  *  things militate on the side of the anemic domain model spooge
+ */
+
+/**
+ * <p>Book class.</p>
+ *
+ * @author glick
  */
 @SuppressWarnings({"JpaDataSourceORMInspection", "WeakerAccess", "DefaultAnnotationParam"})
 @Entity
@@ -60,7 +58,7 @@ public class Book
   @Id
   @Column(name= "book")
   @Size(min=36, max=36)
-  private String book = UUID.randomUUID().toString().toUpperCase();
+  private String bookToken = UUID.randomUUID().toString().toUpperCase();
 
   @Column(name = "title", nullable = false)
   @NotEmpty
@@ -144,7 +142,7 @@ public class Book
    */
   public String getBook()
   {
-    return book;
+    return bookToken;
   }
 
   /**
@@ -170,17 +168,17 @@ public class Book
       return false;
     }
 
-    Book bookObject = (Book) o;
+    Book compareToBook = (Book) o;
 
     if (log.isInfoEnabled())
     {
       log.info("");
       log.info(String.format("1st book is %s %s", this.title, getBookAuthors()));
-      log.info(String.format("2nd book is %s %s", bookObject.title, bookObject.getBookAuthors()));
+      log.info(String.format("2nd book is %s %s", compareToBook.title, compareToBook.getBookAuthors()));
     }
 
-    return title.equals(bookObject.title)
-      && authorDelegate.compareAuthorLists(getBookAuthors(), bookObject.getBookAuthors());
+    return title.equals(compareToBook.title)
+      && authorDelegate.compareAuthorLists(getBookAuthors(), compareToBook.getBookAuthors());
   }
 
   /** {@inheritDoc} */
@@ -197,7 +195,7 @@ public class Book
   public String toString()
   {
     return "Book{" +
-      "book=" + book +
+      "book=" + bookToken +
       ", title='" + title + '\'' +
       ", bookAuthors=" + authorDelegate.recursionSafeAuthorsToString(bookAuthors) +
       '}';

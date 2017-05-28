@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <!-- Configure the Console appender -->
+  <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- Configure the Sentry appender, overriding the logging threshold to the WARN level -->
+  <appender name="Sentry" class="com.getsentry.raven.logback.SentryAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>WARN</level>
+    </filter>
+
+    <!-- Set Sentry DSN -->
+    <dsn>https://host:port/1?options</dsn>
+
+    <!-- Optional, provide release version of your application -->
+    <release>1.0.0</release>
+
+    <!-- Optional, provide environment your application is running in -->
+    <environment>production</environment>
+
+    <!-- Optional, override the server name (rather than looking it up dynamically) -->
+    <serverName>server1</serverName>
+
+    <!-- Optional, select the ravenFactory class -->
+    <ravenFactory>com.foo.RavenFactory</ravenFactory>
+
+    <!-- Optional, provide tags -->
+    <tags>tag1:value1,tag2:value2</tags>
+
+    <!-- Optional, provide tag names to be extracted from MDC -->
+    <extraTags>foo,bar,baz</extraTags>
+  </appender>
+
+  <!-- Enable the Console and Sentry appenders, Console is provided as an example
+       of a non-Raven logger that is set to a different logging threshold -->
+  <root level="INFO">
+    <appender-ref ref="Console" />
+    <appender-ref ref="Sentry" />
+  </root>
+</configuration>

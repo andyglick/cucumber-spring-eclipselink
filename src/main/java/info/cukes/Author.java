@@ -20,10 +20,6 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.TableGenerator;
-// import javax.validation.constraints.NotNull;
-
 /**
  * <p>Author class.</p>
  *
@@ -57,7 +53,7 @@ public class Author
   @Id
   @Column(name = "author")
   @Size(min = 36, max = 36)
-  private String author = UUID.randomUUID().toString().toUpperCase();
+  private String authorToken = UUID.randomUUID().toString().toUpperCase();
 
   @Column(name = "authorName", nullable = false)
   @NotEmpty
@@ -102,7 +98,7 @@ public class Author
    */
   public String getAuthor()
   {
-    return author;
+    return authorToken;
   }
 
   /**
@@ -172,7 +168,7 @@ public class Author
 
     Author compareToAuthor = (Author) o;
 
-    return this.author.equals(compareToAuthor.getAuthor()) && authorName.equals(compareToAuthor.authorName);
+    return this.getAuthor().equals(compareToAuthor.getAuthor()) && authorName.equals(compareToAuthor.authorName);
 
   }
 
@@ -194,7 +190,7 @@ public class Author
   public String toString()
   {
     return "Author{" +
-      "author=" + author +
+      "author=" + authorToken +
       ", authorName='" + authorName + '\'' +
       ", booksAuthored=" + bookDelegate.recursionSafeBooksToString(booksAuthored) +
       '}';

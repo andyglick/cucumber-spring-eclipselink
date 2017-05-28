@@ -73,7 +73,7 @@ public class QueryDSLIT
 
     Assertions.assertThat(allPersistentAuthors).hasSize(moreAuthorNamesCount);
 
-    QAuthor author = QAuthor.author1;
+    QAuthor author = QAuthor.author;
 
     BooleanExpression authorsToLookup = author.authorName.eq("Andy Glick")
       .or(author.authorName.eq("Jim Laspada")).or(author.authorName.eq("Jeffrey Braxton"));

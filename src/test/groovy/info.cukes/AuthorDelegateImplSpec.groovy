@@ -3,8 +3,10 @@ package info.cukes
 /**
  * @author glick
  */
+@SuppressWarnings("GroovyUnusedDeclaration")
 class AuthorDelegateImplSpec {
 
+  @SuppressWarnings("GrMethodMayBeStatic")
   def "add books to an authorDelegate"() {
     AuthorDelegate authorDelegate = new AuthorDelegateImpl()
 
@@ -15,6 +17,7 @@ class AuthorDelegateImplSpec {
     authorDelegate.assignBookToAuthors(authors, book)
   }
 
+  @SuppressWarnings("GrMethodMayBeStatic")
   def "compare author lists"() {
 
     AuthorDelegate authorDelegate = new AuthorDelegateImpl()
