@@ -56,8 +56,8 @@ public class Book
 
   @SuppressWarnings("UnusedDeclaration")
   @Id
-  @Column(name= "book")
-  @Size(min=36, max=36)
+  @Column(name = "book")
+  @Size(min = 36, max = 36)
   private String bookToken = UUID.randomUUID().toString().toUpperCase();
 
   @Column(name = "title", nullable = false)
@@ -147,6 +147,7 @@ public class Book
 
   /**
    * <p>determines if this author is an author of the book</p>
+   *
    * @param author the potential author
    * @return boolean was this an author of this book
    */
@@ -155,7 +156,9 @@ public class Book
     return getBookAuthors().contains(author);
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean equals(Object o)
   {
@@ -170,18 +173,19 @@ public class Book
 
     Book compareToBook = (Book) o;
 
-    if (log.isInfoEnabled())
-    {
-      log.info("");
-      log.info(String.format("1st book is %s %s", this.title, getBookAuthors()));
-      log.info(String.format("2nd book is %s %s", compareToBook.title, compareToBook.getBookAuthors()));
-    }
+
+    log.info("");
+    log.info(String.format("1st book is %s %s", this.title, getBookAuthors()));
+    log.info(String.format("2nd book is %s %s", compareToBook.title, compareToBook.getBookAuthors()));
+
 
     return title.equals(compareToBook.title)
       && authorDelegate.compareAuthorLists(getBookAuthors(), compareToBook.getBookAuthors());
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public int hashCode()
   {
@@ -190,7 +194,9 @@ public class Book
     return result;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public String toString()
   {

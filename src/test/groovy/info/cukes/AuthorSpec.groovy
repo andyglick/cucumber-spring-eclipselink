@@ -50,6 +50,10 @@ class AuthorSpec extends Specification {
     isDifferentObject(clapton, clapton2)
 
     !clapton.equals(clapton2)
-    !clapton2.equals(clapton)
+  }
+
+  def "call clapton's hashcode method for coverage"() {
+    given: "an author clapton call its hashcode method"
+    clapton.hashCode()
   }
 }
