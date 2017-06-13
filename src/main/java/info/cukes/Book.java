@@ -174,9 +174,12 @@ public class Book
     Book compareToBook = (Book) o;
 
 
-    log.info("");
-    log.info(String.format("1st book is %s %s", this.title, getBookAuthors()));
-    log.info(String.format("2nd book is %s %s", compareToBook.title, compareToBook.getBookAuthors()));
+    if (log.isInfoEnabled())
+    {
+      log.info("");
+      log.info(String.format("1st book is %s %s", this.title, getBookAuthors()));
+      log.info(String.format("2nd book is %s %s", compareToBook.title, compareToBook.getBookAuthors()));
+    }
 
 
     return title.equals(compareToBook.title)
