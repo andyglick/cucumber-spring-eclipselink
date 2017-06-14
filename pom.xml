@@ -1427,11 +1427,13 @@
       <version>3.3.0.603</version>
     </dependency>
 
+    <!--
     <dependency>
       <groupId>org.sonarsource.sonar-plugins</groupId>
       <artifactId>sonar-pitest-plugin</artifactId>
       <version>0.7-SNAPSHOT</version>
     </dependency>
+    -->
 
     <dependency>
       <groupId>org.sonarsource.clover</groupId>
