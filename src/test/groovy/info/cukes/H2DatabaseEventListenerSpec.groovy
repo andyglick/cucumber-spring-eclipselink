@@ -1,6 +1,8 @@
 package info.cukes
 
 import com.h2.events.H2DatabaseEventListener
+
+import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -27,11 +29,17 @@ class H2DatabaseEventListenerSpec extends Specification {
     databaseEventListener != null
   }
 
+  @Ignore
   def "exercise setProgress(int state, String name, int x, int max)"() {
 
+    given: "a databaseEventListener"
     databaseEventListener.setProgress(10, "funny stuff", 20, 1000)
 
+    when: "a DatabaseEventListenerException is thrown"
     databaseEventListener.exceptionThrown(new SQLException("who knows what evil", "the shadow do!"),
       "select * from zephyrWindow")
+
+    then: "nothing happens"
+    databaseEventListener != null
   }
 }
