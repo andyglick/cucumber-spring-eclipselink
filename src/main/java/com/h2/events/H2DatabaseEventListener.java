@@ -17,14 +17,15 @@ public class H2DatabaseEventListener implements org.h2.api.DatabaseEventListener
   private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
   static {
+    Thread.setDefaultUncaughtExceptionHandler(new UncaughtThreadExceptionHandler());
+
     if (log.getClass().equals(ch.qos.logback.classic.Logger.class)) {
       ((ch.qos.logback.classic.Logger)log).setLevel(Level.WARN);
     }
   }
 
   @Override
-  public void init(String url)
-  {
+  public void init(String url) {
     if (log.isWarnEnabled())
     {
       log.warn(String.format("H2DatabaseEventListener received URL is %s", url));
@@ -67,6 +68,17 @@ public class H2DatabaseEventListener implements org.h2.api.DatabaseEventListener
     if (log.isWarnEnabled())
     {
       log.warn("H2DatabaseEventListener::closingDatabase");
+    }
+  }
+
+  public static class UncaughtThreadExceptionHandler implements Thread.UncaughtExceptionHandler
+  {
+    @Override
+    public void uncaughtException(Thread t, Throwable e)
+    {
+      log.error("UncaughtThreadExceptionHandler invoked");
+      log.error("the thread's name is " + t.getName());
+      log.error("the exception was " + e.getClass().getSimpleName());
     }
   }
 }

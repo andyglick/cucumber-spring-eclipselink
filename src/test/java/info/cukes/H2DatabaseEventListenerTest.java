@@ -26,13 +26,13 @@ public class H2DatabaseEventListenerTest
     assertThat(databaseEventListener).isNotNull();
   }
 
-  @Test(expected = SQLException.class)
-  @Ignore
+  // @Test(expected = SQLException.class)
+  @Test
   public void whoButTheShadowKnows() {
 
     databaseEventListener.setProgress(10, "funny stuff", 20, 1000);
 
-    databaseEventListener.exceptionThrown(new SQLException("who knows what evil ", "the shadow do!"),
-      "select * from zephyrWindow");
+//    databaseEventListener.exceptionThrown(new SQLException("who knows what evil ", "the shadow do!"),
+//      "select * from zephyrWindow");
   }
 }
