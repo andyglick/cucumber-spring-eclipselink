@@ -68,23 +68,24 @@
   </prerequisites>
 
   <properties>
+    <allure.version></allure.version>
     <arquillian.version>1.1.13.Final</arquillian.version>
     <aspectj.version>1.8.10</aspectj.version>
     <buildNumber>1</buildNumber>
-    <checkerframework.version>2.1.13</checkerframework.version>
+    <checkerframework.version>2.1.14</checkerframework.version>
     <chronos.version>1.1.1</chronos.version>
     <cucumber.jvm.version>1.2.5</cucumber.jvm.version>
     <cucumber.report.title>Cucumber w/ Spring, Spring Data JPA and Eclipselink</cucumber.report.title>
-    <cucumber.reporting.version>3.9.0</cucumber.reporting.version>
+    <cucumber.reporting.version>3.10.0</cucumber.reporting.version>
     <deltaspike.version>1.8.0</deltaspike.version>
-    <eclipselink.version>2.6.4</eclipselink.version>
-    <errorprone.compiler.version>2.0.21</errorprone.compiler.version>
+    <eclipselink.version>2.7.0</eclipselink.version>
+    <errorprone.compiler.version>2.1.0</errorprone.compiler.version>
     <fasterxml.jackson.version>2.9.0</fasterxml.jackson.version>
-    <guava.version>22.0</guava.version>
-    <hibernate.validator.version>6.0.1.Final</hibernate.validator.version>
+    <guava.version>23.0</guava.version>
+    <hibernate.validator.version>6.0.2.Final</hibernate.validator.version>
     <java.version>1.8</java.version>
     <javassist.version>3.22.0-CR2</javassist.version>
-    <javax.persistence.version>2.2.0-RC1</javax.persistence.version>
+    <javax.persistence.version>2.2.0</javax.persistence.version>
     <jdepend.plugin.version>2.0</jdepend.plugin.version>
     <jooq.version>3.9.5</jooq.version>
     <junit.version>4.12</junit.version>
@@ -108,7 +109,7 @@
     <slf4j.version>1.7.25</slf4j.version>
     <spring.data.jpa.version>1.11.6.RELEASE</spring.data.jpa.version>
     <springframework.version>4.3.10.RELEASE</springframework.version>
-    <surefire.forkMode>always</surefire.forkMode>
+    <!--<surefire.forkMode>always</surefire.Mode>-->
     <surefire.reportFormat>plain</surefire.reportFormat>
     <surefire.useFile>false</surefire.useFile>
     <surefire.version>2.20</surefire.version>
@@ -308,7 +309,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>2.1.0</version>
+        <version>2.1.1</version>
       </plugin>
 
       <plugin>
@@ -361,16 +362,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <includes>
-            <include>**/*Spec.java</include>
-            <include>**/*Test.java</include>
-          </includes>
-          <forkMode>always</forkMode>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>au.com.alderaan</groupId>
@@ -458,7 +449,8 @@
                 <ignoreClass>com.google.common.*</ignoreClass>
                 <ignoreClass>org.checkerframework.*</ignoreClass>
                 <ignoreClass>org.hamcrest.*</ignoreClass>
-                <ignoreClass> org.apache.maven.shared.dependency.tree.DependencyTreeResolutionListener</ignoreClass>
+                <ignoreClass>org.apache.maven.shared.dependency.tree.DependencyTreeResolutionListener</ignoreClass>
+                <ignoreClass>org.apache.commons.collections.*</ignoreClass>
               </ignoreClasses>
               <findAllDuplicates>true</findAllDuplicates>
             </banDuplicateClasses>
@@ -543,15 +535,68 @@
           <check/>
         </configuration>
       </plugin>
-
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+          </dependency>
+          <!--<dependency>-->
+            <!--<groupId>ru.yandex.qatools.allure</groupId>-->
+            <!--<artifactId>allure-junit-adaptor</artifactId>-->
+            <!--<version>${allure.version}</version>-->
+          <!--</dependency>-->
+        </dependencies>
+        <configuration>
+          <includes>
+            <include>**/*Test.java</include>
+            <include>**/*Spec.java</include>
+          </includes>
+          <argLine>
+            @{argLine}
+            -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+          </argLine>
+          <properties>
+            <property>
+              <name>listener</name>
+              <!--<value>ru.yandex.qatools.allure.junit.AllureRunListener</value>-->
+            </property>
+          </properties>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>${surefire.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+          </dependency>
+          <!--<dependency>-->
+            <!--<groupId>ru.yandex.qatools.allure</groupId>-->
+            <!--<artifactId>allure-junit-adaptor</artifactId>-->
+            <!--<version>${allure.version}</version>-->
+          <!--</dependency>-->
+        </dependencies>
         <configuration>
           <includes>
             <include>**/*SpecIT.java</include>
             <include>**/*IT.java</include>
           </includes>
+          <argLine>
+            @{argLine}
+            -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+          </argLine>
+          <properties>
+            <property>
+              <name>listener</name>
+              <!--<value>ru.yandex.qatools.allure.junit.AllureRunListener</value>-->
+            </property>
+          </properties>
         </configuration>
         <executions>
           <execution>
@@ -567,7 +612,7 @@
       <plugin>
         <groupId>net.masterthought</groupId>
         <artifactId>maven-cucumber-reporting</artifactId>
-        <version>3.9.0</version>
+        <version>3.10.0</version>
         <dependencies>
           <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -605,6 +650,14 @@
           <outputDirectory>${project.build.directory}/site/cucumber-html-reports</outputDirectory>
           <cucumberOutput>${project.build.directory}/cucumber</cucumberOutput>
           <!--<enableFlashCharts>true</enableFlashCharts>-->
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.8</version>
+        <configuration>
+          <reportVersion>2.3.3</reportVersion>
         </configuration>
       </plugin>
       <plugin>
@@ -753,24 +806,24 @@
             <groupId>io.magentys</groupId>
             <artifactId>donut-maven-plugin</artifactId>
             <version>0.0.5</version>
-	<configuration>
-	  <sourceDirectory>${project.build.directory}/cucumber</sourceDirectory>
-	  <outputDirectory>${project.build.directory}/site/donut</outputDirectory>
-	  <!--<timestamp>${maven.build.timestamp}</timestamp>-->
-	  <template>default</template>
-	  <projectName>${project.name}</projectName>
-	  <!-- optional -->
-	  <customAttributes>
-	    <customAttribute>
-	      <name>My Custom 1</name>
-	      <value>custom123</value>
-	    </customAttribute>
-	    <customAttribute>
-	      <name>App Name</name>
-	      <value>${project.name}</value>
-	    </customAttribute>
-	  </customAttributes>
-	</configuration>
+            <configuration>
+              <sourceDirectory>${project.build.directory}/cucumber</sourceDirectory>
+              <outputDirectory>${project.build.directory}/site/donut</outputDirectory>
+              <!--<timestamp>${maven.build.timestamp}</timestamp>-->
+              <template>default</template>
+              <projectName>${project.name}</projectName>
+              <!-- optional -->
+              <customAttributes>
+                <customAttribute>
+                  <name>My Custom 1</name>
+                  <value>custom123</value>
+                </customAttribute>
+                <customAttribute>
+                  <name>App Name</name>
+                  <value>${project.name}</value>
+                </customAttribute>
+              </customAttributes>
+            </configuration>
             <executions>
               <execution>
                 <id>execution</id>
@@ -962,7 +1015,7 @@
                   <tags>"@txn"</tags>
                   <!-- If set to true, only feature files containing the required tags shall be generated. -->
                   <!-- Excluded tags (~@notMe) are ignored. -->
-                  <filterFeaturesByTags>true</filterFeaturesByTags>
+                  <!--<filterFeaturesByTags>true</filterFeaturesByTags>-->
                 </configuration>
               </execution>
             </executions>
@@ -996,7 +1049,7 @@
         <dependency>
           <groupId>org.jboss.weld.se</groupId>
           <artifactId>weld-se-core</artifactId>
-          <version>3.0.0.Final</version>
+          <version>3.0.1.Final</version>
           <exclusions>
             <exclusion>
               <groupId>org.jboss.spec.javax.el</groupId>
@@ -1005,6 +1058,10 @@
             <exclusion>
               <groupId>org.jboss.spec.javax.interceptor</groupId>
               <artifactId>jboss-interceptors-api_1.2_spec</artifactId>
+            </exclusion>
+            <exclusion>
+              <groupId>org.jboss.weld.environment</groupId>
+              <artifactId>weld-environment-common</artifactId>
             </exclusion>
           </exclusions>
         </dependency>
@@ -1063,6 +1120,29 @@
 
   <dependencyManagement>
     <dependencies>
+
+      <dependency>
+        <groupId>org.jboss.classfilewriter</groupId>
+        <artifactId>jboss-classfilewriter</artifactId>
+        <version>1.2.1.Final</version>
+      </dependency>
+
+      <!--<dependency>-->
+        <!--<groupId>ru.yandex.qatools.allure</groupId>-->
+        <!--<artifactId>allure-java-aspects</artifactId>-->
+        <!--<version>${allure.version}</version>-->
+      <!--</dependency>-->
+
+      <!--<dependency>-->
+        <!--<groupId>ru.yandex.qatools.allure</groupId>-->
+        <!--<artifactId>allure-commons</artifactId>-->
+        <!--<version>${allure.version}</version>-->
+      <!--</dependency>-->
+      <!--<dependency>-->
+        <!--<groupId>ru.yandex.qatools.allure</groupId>-->
+        <!--<artifactId>allure-model</artifactId>-->
+        <!--<version>${allure.version}</version>-->
+      <!--</dependency>-->
 
       <!-- org.jboss.weld:weld-api:3.0.Final -->
 
@@ -1463,6 +1543,33 @@
   <dependencies>
 
     <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber-jvm</artifactId>
+      <version>2.0-BETA17</version>
+    </dependency>
+
+    <!--<dependency>-->
+      <!--<groupId>ru.yandex.qatools.allure</groupId>-->
+      <!--<artifactId>allure-cucumber-jvm-adaptor</artifactId>-->
+      <!--<version>1.6.3</version>-->
+      <!--<exclusions>-->
+        <!--<exclusion>-->
+          <!--<groupId>org.aspectj</groupId>-->
+          <!--<artifactId>aspectjrt</artifactId>-->
+        <!--</exclusion>-->
+        <!--<exclusion>-->
+          <!--<groupId>commons-logging</groupId>-->
+          <!--<artifactId>commons-logging</artifactId>-->
+        <!--</exclusion>-->
+      <!--</exclusions>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>ru.yandex.qatools.allure</groupId>-->
+      <!--<artifactId>allure-junit-adaptor</artifactId>-->
+      <!--<version>1.5.4</version>-->
+    <!--</dependency>-->
+
+    <dependency>
       <groupId>org.sonarsource.scanner.maven</groupId>
       <artifactId>sonar-maven-plugin</artifactId>
       <version>3.3.0.603</version>
@@ -1626,7 +1733,7 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.0-b07</version>
+      <version>4.0.0</version>
     </dependency>
     <dependency>
       <groupId>javax.enterprise</groupId>
