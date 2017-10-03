@@ -1,4 +1,5 @@
 sudo: false
+install: true
 addons:
   apt:
     packages:
@@ -14,4 +15,8 @@ jdk:
 script: mvn clean verify -P errorprone-compiler
 
 after_success:
-  - mvn clean verify jacoco:report jacoco:integration-report coveralls:report
+  - mvn clean verify jacoco:report jacoco:integration-report coveralls:report sonar:sonar
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
