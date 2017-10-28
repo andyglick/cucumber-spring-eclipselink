@@ -110,7 +110,7 @@ public class CreateAuthorsWithBookIT
 
     List<Author> authors = Arrays.asList(andyGlick, jimLaSpada);
 
-    authorRepository.save(authors);
+    authorRepository.saveAll(authors);
 
     expectedAuthorList.add(andyGlick);
     expectedAuthorList.add(jimLaSpada);

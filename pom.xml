@@ -25,9 +25,9 @@
     </repository>
     -->
     <repository>
-      <id>central</id>
-      <name>Maven Central</name>
-      <url>https://repo1.maven.org/maven2</url>
+      <id>byu.edu</id>
+      <name>Brigham Young EDU Maven Repo</name>
+      <url>https://developer.byu.edu/maven2/content/groups/thirdparty</url>
     </repository>
     <repository>
       <snapshots>
@@ -50,6 +50,22 @@
       <id>sonatype-releases</id>
       <url>https://oss.sonatype.org/content/repositories/releases/</url>
     </repository>
+    <repository>
+      <id>central</id>
+      <name>Maven Central</name>
+      <url>https://repo1.maven.org/maven2</url>
+    </repository>
+    <repository>
+      <id>mvnrepository</id>
+      <name>mvnrepository</name>
+      <url>http://www.mvnrepository.com/artifact</url>
+      <!--<layout>legacy</layout>-->
+    </repository>
+    <!--<repository>-->
+      <!--<id>maven.oracle.com</id>-->
+      <!--<name>Oracle Maven Repo</name>-->
+      <!--<url>https://maven.oracle.com</url>-->
+    <!--</repository>-->
   </repositories>
 
   <pluginRepositories>
@@ -68,27 +84,28 @@
   </prerequisites>
 
   <properties>
-    <allure.version>2.0-BETA18</allure.version>
+    <allure.version>2.0-BETA19</allure.version>
     <arquillian.version>1.1.13.Final</arquillian.version>
-    <aspectj.version>1.8.11</aspectj.version>
+    <aspectj.version>1.8.12</aspectj.version>
     <bcel.version>6.1</bcel.version>
     <buildNumber>1</buildNumber>
     <checkerframework.version>2.2.1</checkerframework.version>
     <chronos.version>1.1.1</chronos.version>
     <cucumber.jvm.version>1.2.5</cucumber.jvm.version>
     <cucumber.report.title>Cucumber w/ Spring, Spring Data JPA and Eclipselink</cucumber.report.title>
-    <cucumber.reporting.version>3.10.0</cucumber.reporting.version>
+    <cucumber.reporting.version>3.11.0</cucumber.reporting.version>
     <deltaspike.version>1.8.0</deltaspike.version>
+    <donut.junit.adapter.version>0.2.2</donut.junit.adapter.version>
     <eclipselink.version>2.7.0</eclipselink.version>
-    <errorprone.compiler.version>2.1.1</errorprone.compiler.version>
-    <fasterxml.jackson.version>2.9.1</fasterxml.jackson.version>
-    <guava.version>23.1-jre</guava.version>
-    <hibernate.validator.version>6.0.2.Final</hibernate.validator.version>
+    <errorprone.compiler.version>2.1.2</errorprone.compiler.version>
+    <fasterxml.jackson.version>2.9.2</fasterxml.jackson.version>
+    <guava.version>23.3-jre</guava.version>
+    <hibernate.validator.version>6.0.4.Final</hibernate.validator.version>
     <java.version>1.8</java.version>
-    <javassist.version>3.22.0-CR2</javassist.version>
+    <javassist.version>3.22.0-GA</javassist.version>
     <javax.persistence.version>2.2.0</javax.persistence.version>
     <jdepend.plugin.version>2.0</jdepend.plugin.version>
-    <jooq.version>3.10.0</jooq.version>
+    <jooq.version>3.10.1</jooq.version>
     <junit.version>4.12</junit.version>
     <logback.version>1.2.3</logback.version>
     <maven.artifact.version>3.5.0</maven.artifact.version>
@@ -96,7 +113,7 @@
     <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <maven.version>3.5.0</maven.version>
+    <maven.version>3.5.2</maven.version>
     <openclover.version>4.2.0</openclover.version>
     <openwebbeans.version>1.7.3</openwebbeans.version>
     <plexus.compiler.version>2.8.2</plexus.compiler.version>
@@ -108,8 +125,8 @@
     <shrinkwrap.resolver.version>2.2.2</shrinkwrap.resolver.version>
     <shrinkwrap.version>1.2.6</shrinkwrap.version>
     <slf4j.version>1.7.25</slf4j.version>
-    <spring.data.jpa.version>1.11.7.RELEASE</spring.data.jpa.version>
-    <springframework.version>5.0.0.RELEASE</springframework.version>
+    <spring.data.jpa.version>2.0.1.RELEASE</spring.data.jpa.version>
+    <springframework.version>5.0.1.RELEASE</springframework.version>
     <!--<surefire.forkMode>always</surefire.Mode>-->
     <surefire.reportFormat>plain</surefire.reportFormat>
     <surefire.useFile>false</surefire.useFile>
@@ -301,11 +318,11 @@
     </pluginManagement>
 
     <plugins>
-      <plugin>
-        <groupId>org.sonarsource.orchestrator</groupId>
-        <artifactId>orchestrator-maven-plugin</artifactId>
-        <version>3.14.0.887</version>
-      </plugin>
+      <!--<plugin>-->
+        <!--<groupId>org.sonarsource.orchestrator</groupId>-->
+        <!--<artifactId>orchestrator-maven-plugin</artifactId>-->
+        <!--<version>3.15.0.1256</version>-->
+      <!--</plugin>-->
       <plugin>
         <groupId>com.github.ekryd.sortpom</groupId>
         <artifactId>sortpom-maven-plugin</artifactId>
@@ -325,7 +342,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>2.1.1</version>
+        <version>3.0.1</version>
       </plugin>
       <plugin>
         <groupId>org.eluder.coveralls</groupId>
@@ -359,7 +376,7 @@
       <plugin>
         <groupId>com.github.ferstl</groupId>
         <artifactId>depgraph-maven-plugin</artifactId>
-        <version>2.2.1</version>
+        <version>3.0.0</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -421,7 +438,7 @@
               <version>${java.version}</version>
             </requireJavaVersion>
             <requireMavenVersion>
-              <version>[3.2.5,3.5.0]</version>
+              <version>[3.2.5,3.5.5]</version>
             </requireMavenVersion>
             <dependencyConvergence/>
             <bannedDependencies>
@@ -526,7 +543,7 @@
       <plugin>
         <groupId>org.pitest</groupId>
         <artifactId>pitest-maven</artifactId>
-        <version>1.2.3</version>
+        <version>1.2.4</version>
         <configuration>
           <targetClasses>
             <param>info.cukes*</param>
@@ -568,7 +585,6 @@
             <include>**/*Spec.java</include>
           </includes>
           <argLine>
-            @{argLine}
             -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
           </argLine>
           <properties>
@@ -595,7 +611,6 @@
             <include>**/*IT.java</include>
           </includes>
           <argLine>
-            @{argLine}
             -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
           </argLine>
           <properties>
@@ -619,12 +634,12 @@
       <plugin>
         <groupId>net.masterthought</groupId>
         <artifactId>maven-cucumber-reporting</artifactId>
-        <version>3.10.0</version>
+        <version>3.11.0</version>
         <dependencies>
           <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-to-slf4j</artifactId>
-            <version>2.7</version>
+            <version>2.9.1</version>
           </dependency>
           <dependency>
             <groupId>net.masterthought</groupId>
@@ -662,7 +677,7 @@
       <plugin>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-maven</artifactId>
-        <version>2.8</version>
+        <version>2.9</version>
         <configuration>
           <reportVersion>2.3.3</reportVersion>
         </configuration>
@@ -810,9 +825,18 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>io.magentys</groupId>
+            <!--<groupId>io.magentys</groupId>-->
+            <groupId>report.donut</groupId>
             <artifactId>donut-maven-plugin</artifactId>
-            <version>0.0.5</version>
+            <!--<version>0.0.5</version>-->
+            <version>0.0.6</version>
+            <dependencies>
+              <dependency>
+                <groupId>report.donut</groupId>
+                <artifactId>donut-junit-adapter</artifactId>
+                <version>${donut.junit.adapter.version}</version>
+              </dependency>
+            </dependencies>
             <configuration>
               <sourceDirectory>${project.build.directory}/cucumber</sourceDirectory>
               <outputDirectory>${project.build.directory}/site/donut</outputDirectory>
@@ -1127,6 +1151,24 @@
 
   <dependencyManagement>
     <dependencies>
+
+      <dependency>
+        <groupId>report.donut</groupId>
+        <artifactId>donut-junit-adapter</artifactId>
+        <version>${donut.junit.adapter.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-commons</artifactId>
+        <version>2.0.1.RELEASE</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
 
       <dependency>
         <groupId>org.jboss.classfilewriter</groupId>
@@ -1479,7 +1521,7 @@
       <dependency>
         <groupId>org.javassist</groupId>
         <artifactId>javassist</artifactId>
-        <version>3.22.0-CR2</version>
+        <version>${javassist.version}</version>
       </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
@@ -1536,6 +1578,12 @@
 
   <!-- ToDo investigate checkerframework -->
   <dependencies>
+
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons</artifactId>
+      <version>2.0.1.RELEASE</version>
+    </dependency>
 
     <dependency>
       <groupId>io.qameta.allure</groupId>
@@ -1701,7 +1749,7 @@
     <dependency>
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
-      <version>2.7.1</version>
+      <version>2.7.2</version>
       <scope>compile</scope>
     </dependency>
 

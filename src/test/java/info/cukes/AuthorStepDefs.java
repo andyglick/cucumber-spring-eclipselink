@@ -99,7 +99,7 @@ public class AuthorStepDefs
 
     List<Author> transformedAuthorList = authorDelegate.assignBookToAuthors(authorList, localBook);
 
-    authorRepository.save(transformedAuthorList);
+    authorRepository.saveAll(transformedAuthorList);
 
     booksAdded = 1;
   }
