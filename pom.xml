@@ -19,11 +19,6 @@
 
   <repositories>
     <repository>
-      <id>byu.edu</id>
-      <name>Brigham Young EDU Maven Repo</name>
-      <url>https://developer.byu.edu/maven2/content/groups/thirdparty</url>
-    </repository>
-    <repository>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -55,11 +50,11 @@
       <url>http://www.mvnrepository.com/artifact</url>
       <!--<layout>legacy</layout>-->
     </repository>
-    <!--<repository>-->
-      <!--<id>maven.oracle.com</id>-->
-      <!--<name>Oracle Maven Repo</name>-->
-      <!--<url>https://maven.oracle.com</url>-->
-    <!--</repository>-->
+    <repository>
+      <id>maven.oracle.com</id>
+      <name>Oracle Maven Repo</name>
+      <url>https://maven.oracle.com</url>
+    </repository>
   </repositories>
 
   <pluginRepositories>
@@ -316,7 +311,7 @@
       <plugin>
         <groupId>org.sonarsource.orchestrator</groupId>
         <artifactId>orchestrator-maven-plugin</artifactId>
-        <version>3.15.0.1256</version>
+        <version>3.15.2.1322</version>
       </plugin>
       <plugin>
         <groupId>com.github.ekryd.sortpom</groupId>
@@ -671,7 +666,6 @@
           <projectName>${cucumber.report.title}</projectName>
           <outputDirectory>${project.build.directory}/site/cucumber-html-reports</outputDirectory>
           <cucumberOutput>${project.build.directory}/cucumber</cucumberOutput>
-          <!--<enableFlashCharts>true</enableFlashCharts>-->
         </configuration>
       </plugin>
       <plugin>
@@ -825,10 +819,8 @@
       <build>
         <plugins>
           <plugin>
-            <!--<groupId>io.magentys</groupId>-->
             <groupId>report.donut</groupId>
             <artifactId>donut-maven-plugin</artifactId>
-            <!--<version>0.0.5</version>-->
             <version>0.0.6</version>
             <dependencies>
               <dependency>
@@ -1151,6 +1143,12 @@
 
   <dependencyManagement>
     <dependencies>
+
+      <dependency>
+        <groupId>org.sonarsource.update-center</groupId>
+        <artifactId>sonar-update-center-common</artifactId>
+        <version>1.21.0.561</version>
+      </dependency>
 
       <dependency>
         <groupId>org.aspectj</groupId>
@@ -1584,6 +1582,12 @@
 
   <!-- ToDo investigate checkerframework -->
   <dependencies>
+
+    <dependency>
+      <groupId>org.sonarsource.orchestrator</groupId>
+      <artifactId>orchestrator-maven-plugin</artifactId>
+      <version>3.15.0.1256</version>
+    </dependency>
 
     <dependency>
       <groupId>io.qameta.allure</groupId>
