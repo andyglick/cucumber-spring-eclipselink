@@ -457,17 +457,21 @@
 
                 <!-- example of ignoring with wildcards -->
                 <ignoreClass>com.sun.tools.*</ignoreClass>
-                <ignoreClass>org.apache.commons.beanutils.*</ignoreClass>
-                <ignoreClass>org.apache.commons.logging.*</ignoreClass>
-                <ignoreClass>net.jcip.*</ignoreClass>
                 <ignoreClass>io.magentys.*</ignoreClass>
+                <ignoreClass>javax.inject.*</ignoreClass>
+
+                <ignoreClass>net.jcip.*</ignoreClass>
+                <ignoreClass>org.aopalliance.*</ignoreClass>
                 <ignoreClass>org.aspectj.*</ignoreClass>
+
                 <ignoreClass>aj.org.objectweb.asm.*</ignoreClass>
                 <ignoreClass>javax.annotation.*</ignoreClass>
                 <ignoreClass>javax.validation.constraints.NotNull</ignoreClass>
                 <ignoreClass>edu.umd.cs.findbugs.annotations.*</ignoreClass>
                 <ignoreClass>org.apache.commons.io.*</ignoreClass>
                 <ignoreClass>org.apache.commons.lang.*</ignoreClass>
+                <ignoreClass>org.apache.commons.beanutils.*</ignoreClass>
+                <ignoreClass>org.apache.commons.logging.*</ignoreClass>
                 <ignoreClass>org.apache.commons.lang3.*</ignoreClass>
                 <ignoreClass>com.google.common.*</ignoreClass>
                 <ignoreClass>org.checkerframework.*</ignoreClass>
@@ -1143,6 +1147,40 @@
 
   <dependencyManagement>
     <dependencies>
+
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-model</artifactId>
+        <version>${maven.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-plugin-api</artifactId>
+        <version>${maven.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.44</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>1.4.196</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-classworlds</artifactId>
+        <version>2.5.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-component-annotations</artifactId>
+        <version>1.7.1</version>
+      </dependency>
 
       <dependency>
         <groupId>org.sonarsource.update-center</groupId>
@@ -1848,7 +1886,7 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>1.4.196</version>
+      <!--<version>1.4.196</version>-->
     </dependency>
 
     <dependency>
