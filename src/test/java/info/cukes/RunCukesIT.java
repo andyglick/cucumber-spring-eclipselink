@@ -16,8 +16,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(glue = {"info.cukes", "cucumber.api.spring"},
   plugin = {"pretty", "html:target/site/cucumber-pretty", "usage:target/cucumber-usage/cucumber-usage.json",
-  "json:target/cucumber/cucumber.json", "io.qameta.allure.cucumberjvm.AllureCucumberJvm"},
-  tags = {"@txn"})
+  "json:target/cucumber/cucumber.json"}, tags = "@txn")
 @Transactional
 @EnableTransactionManagement
 public class RunCukesIT
