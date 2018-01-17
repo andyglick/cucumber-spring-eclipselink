@@ -12,7 +12,7 @@ language: java
 jdk:
   - oraclejdk8
   
-script: mvn clean verify -P errorprone-compiler
+script: mvn clean verify
 
 after_success:
   - mvn clean verify jacoco:report jacoco:integration-report coveralls:report sonar:sonar
