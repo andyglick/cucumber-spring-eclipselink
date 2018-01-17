@@ -310,12 +310,11 @@
     </pluginManagement>
 
     <plugins>
-
-      <plugin>
-        <groupId>org.sonarsource.orchestrator</groupId>
-        <artifactId>orchestrator-maven-plugin</artifactId>
-        <version>${orchestrator.plugin.version}</version>
-      </plugin>
+      <!--<plugin>-->
+        <!--<groupId>org.sonarsource.orchestrator</groupId>-->
+        <!--<artifactId>orchestrator-maven-plugin</artifactId>-->
+        <!--<version>${orchestrator.plugin.version}</version>-->
+      <!--</plugin>-->
       <plugin>
         <groupId>com.github.ekryd.sortpom</groupId>
         <artifactId>sortpom-maven-plugin</artifactId>
