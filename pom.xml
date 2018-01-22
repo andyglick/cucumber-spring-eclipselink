@@ -50,11 +50,11 @@
       <url>http://www.mvnrepository.com/artifact</url>
       <!--<layout>legacy</layout>-->
     </repository>
-    <!--<repository>-->
-      <!--<id>maven.oracle.com</id>-->
-      <!--<name>Oracle Maven Repo</name>-->
-      <!--<url>https://maven.oracle.com</url>-->
-    <!--</repository>-->
+    <repository>
+      <id>maven.oracle.com</id>
+      <name>Oracle Maven Repo</name>
+      <url>https://maven.oracle.com</url>
+    </repository>
   </repositories>
 
   <pluginRepositories>
@@ -310,11 +310,6 @@
     </pluginManagement>
 
     <plugins>
-      <!--<plugin>-->
-        <!--<groupId>org.sonarsource.orchestrator</groupId>-->
-        <!--<artifactId>orchestrator-maven-plugin</artifactId>-->
-        <!--<version>${orchestrator.plugin.version}</version>-->
-      <!--</plugin>-->
       <plugin>
         <groupId>com.github.ekryd.sortpom</groupId>
         <artifactId>sortpom-maven-plugin</artifactId>
@@ -891,7 +886,7 @@
           <plugin>
             <groupId>org.gaul</groupId>
             <artifactId>modernizer-maven-plugin</artifactId>
-            <version>1.5.0</version>
+            <version>1.6.0</version>
             <configuration>
               <javaVersion>1.8</javaVersion>
             </configuration>
@@ -1144,6 +1139,25 @@
           <version>${openwebbeans.version}</version>
         </dependency>
       </dependencies>
+    </profile>
+    <profile>
+      <id>sonar-orchestrator</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.sonarsource.orchestrator</groupId>
+          <artifactId>orchestrator-maven-plugin</artifactId>
+          <version>${orchestrator.plugin.version}</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonarsource.orchestrator</groupId>
+            <artifactId>orchestrator-maven-plugin</artifactId>
+            <version>${orchestrator.plugin.version}</version>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 
@@ -1622,12 +1636,6 @@
 
   <!-- ToDo investigate checkerframework -->
   <dependencies>
-
-    <dependency>
-      <groupId>org.sonarsource.orchestrator</groupId>
-      <artifactId>orchestrator-maven-plugin</artifactId>
-      <version>${orchestrator.plugin.version}</version>
-    </dependency>
 
     <dependency>
       <groupId>io.qameta.allure</groupId>
