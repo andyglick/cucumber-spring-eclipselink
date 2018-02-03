@@ -78,7 +78,7 @@
     <aspectj.version>1.8.13</aspectj.version>
     <bcel.version>6.2</bcel.version>
     <buildNumber>1</buildNumber>
-    <checkerframework.version>2.3.1</checkerframework.version>
+    <checkerframework.version>2.3.2</checkerframework.version>
     <chronos.version>1.1.1</chronos.version>
     <cucumber.jvm.version>1.2.5</cucumber.jvm.version>
     <cucumber.report.title>Cucumber w/ Spring, Spring Data JPA and Eclipselink</cucumber.report.title>
@@ -89,7 +89,7 @@
     <eclipselink.version>2.7.1</eclipselink.version>
     <errorprone.compiler.version>2.2.0</errorprone.compiler.version>
     <fasterxml.jackson.version>2.9.4</fasterxml.jackson.version>
-    <guava.version>23.6-jre</guava.version>
+    <guava.version>24.0-jre</guava.version>
     <hibernate.validator.version>6.0.7.Final</hibernate.validator.version>
     <java.version>1.8</java.version>
     <javassist.version>3.22.0-GA</javassist.version>
@@ -97,7 +97,7 @@
     <jdepend.plugin.version>2.0</jdepend.plugin.version>
     <jooq.version>3.10.4</jooq.version>
     <junit.version>4.12</junit.version>
-    <logback.version>1.3.0-alpha0</logback.version>
+    <logback.version>1.3.0-alpha2</logback.version>
     <maven.artifact.version>3.5.0</maven.artifact.version>
     <maven.cucumber.reporting.version>${cucumber.reporting.version}</maven.cucumber.reporting.version>
     <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
@@ -116,8 +116,8 @@
     <shrinkwrap.descriptors.version>2.0.0</shrinkwrap.descriptors.version>
     <shrinkwrap.resolver.version>2.2.2</shrinkwrap.resolver.version>
     <shrinkwrap.version>1.2.6</shrinkwrap.version>
-    <slf4j.version> 1.8.0-beta0</slf4j.version>
-    <spring.data.jpa.version>2.0.2.RELEASE</spring.data.jpa.version>
+    <slf4j.version> 1.8.0-beta1</slf4j.version>
+    <spring.data.jpa.version>2.0.3.RELEASE</spring.data.jpa.version>
     <springframework.version>5.0.3.RELEASE</springframework.version>
     <!--<surefire.forkMode>always</surefire.Mode>-->
     <surefire.reportFormat>plain</surefire.reportFormat>
@@ -329,7 +329,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>3.1.0</version>
+        <version>3.1.1</version>
       </plugin>
       <plugin>
         <groupId>org.eluder.coveralls</groupId>
@@ -539,7 +539,7 @@
       <plugin>
         <groupId>org.pitest</groupId>
         <artifactId>pitest-maven</artifactId>
-        <version>1.3.1</version>
+        <version>1.3.2</version>
         <configuration>
           <targetClasses>
             <param>info.cukes*</param>
@@ -1219,7 +1219,7 @@
       <dependency>
         <groupId>org.springframework.data</groupId>
         <artifactId>spring-data-commons</artifactId>
-        <version>2.0.2.RELEASE</version>
+        <version>2.0.3.RELEASE</version>
         <exclusions>
           <exclusion>
             <groupId>org.springframework</groupId>
@@ -1651,7 +1651,7 @@
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-commons</artifactId>
-      <version>2.0.2.RELEASE</version>
+      <version>2.0.3.RELEASE</version>
     </dependency>
 
     <!--<dependency>-->
