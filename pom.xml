@@ -83,52 +83,54 @@
   </prerequisites>
 
   <properties>
-    <allure.version>2.0-BETA21</allure.version>
-    <arquillian.version>1.3.0.Final</arquillian.version>
+    <allure.version>2.6.0</allure.version>
+    <arquillian.version>1.4.0.Final</arquillian.version>
     <aspectj.version>1.8.13</aspectj.version>
     <bcel.version>6.2</bcel.version>
     <buildNumber>1</buildNumber>
-    <checkerframework.version>2.3.2</checkerframework.version>
+    <buildtime.output.log>true</buildtime.output.log>
+    <checkerframework.version>2.4.0</checkerframework.version>
     <chronos.version>1.1.1</chronos.version>
     <cucumber.jvm.version>1.2.5</cucumber.jvm.version>
     <cucumber.report.title>Cucumber w/ Spring, Spring Data JPA and Eclipselink</cucumber.report.title>
-    <cucumber.reporting.version>3.14.0</cucumber.reporting.version>
-    <cucumber2.jvm.version>2.3.1</cucumber2.jvm.version>
+    <cucumber.reporting.version>3.15.0</cucumber.reporting.version>
+    <cucumber2.jvm.version>2.4.0</cucumber2.jvm.version>
     <deltaspike.version>1.8.1</deltaspike.version>
     <donut.junit.adapter.version>0.2.3</donut.junit.adapter.version>
     <eclipselink.version>2.7.1</eclipselink.version>
     <errorprone.compiler.version>2.2.0</errorprone.compiler.version>
     <fasterxml.jackson.version>2.9.4</fasterxml.jackson.version>
-    <guava.version>24.0-jre</guava.version>
-    <hibernate.validator.version>6.0.7.Final</hibernate.validator.version>
+    <guava.version>24.1-jre</guava.version>
+    <hibernate.validator.version>6.0.8.Final</hibernate.validator.version>
     <java.version>1.8</java.version>
     <javassist.version>3.22.0-GA</javassist.version>
+    <javax.annotation.version>1.3.2</javax.annotation.version>
     <javax.persistence.version>2.2.0</javax.persistence.version>
     <jdepend.plugin.version>2.0</jdepend.plugin.version>
-    <jooq.version>3.10.4</jooq.version>
+    <jooq.version>3.10.6</jooq.version>
     <junit.version>4.12</junit.version>
-    <logback.version>1.3.0-alpha3</logback.version>
+    <logback.version>1.3.0-alpha4</logback.version>
     <maven.artifact.version>3.5.0</maven.artifact.version>
     <maven.cucumber.reporting.version>${cucumber.reporting.version}</maven.cucumber.reporting.version>
     <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
     <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <maven.version>3.5.2</maven.version>
+    <maven.version>3.5.3</maven.version>
     <openclover.version>4.2.1</openclover.version>
     <openwebbeans.version>1.7.3</openwebbeans.version>
     <orchestrator.plugin.version>3.15.2.1322</orchestrator.plugin.version>
-    <plexus.compiler.version>2.8.2</plexus.compiler.version>
+    <plexus.compiler.version>2.8.3</plexus.compiler.version>
     <plexus.utils.version>3.1.0</plexus.utils.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <querydsl.version>4.1.4</querydsl.version>
+    <querydsl.version>4.2.1</querydsl.version>
     <shrinkwrap.descriptors.version>2.0.0</shrinkwrap.descriptors.version>
     <shrinkwrap.resolver.version>2.2.2</shrinkwrap.resolver.version>
     <shrinkwrap.version>1.2.6</shrinkwrap.version>
-    <slf4j.version> 1.8.0-beta1</slf4j.version>
-    <spring.data.jpa.version>2.0.3.RELEASE</spring.data.jpa.version>
-    <springframework.version>5.0.3.RELEASE</springframework.version>
+    <slf4j.version> 1.8.0-beta2</slf4j.version>
+    <spring.data.jpa.version>2.0.5.RELEASE</spring.data.jpa.version>
+    <springframework.version>5.0.4.RELEASE</springframework.version>
     <!--<surefire.forkMode>always</surefire.Mode>-->
     <surefire.reportFormat>plain</surefire.reportFormat>
     <surefire.useFile>false</surefire.useFile>
@@ -335,23 +337,6 @@
         <groupId>org.openclover</groupId>
         <artifactId>clover-maven-plugin</artifactId>
         <version>${openclover.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.owasp</groupId>
-        <artifactId>dependency-check-maven</artifactId>
-        <version>3.1.1</version>
-        <configuration>
-          <failBuildOnCVSS>8</failBuildOnCVSS>
-        </configuration>
-        <executions>
-          <execution>
-            <id>dependency-check-validate</id>
-            <phase>validate</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.eluder.coveralls</groupId>
@@ -588,8 +573,25 @@
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire.version}</version>
+        <configuration>
+          <testFailureIgnore>false</testFailureIgnore>
+          <includes>
+            <include>**/*Test.java</include>
+            <include>**/*Spec.java</include>
+          </includes>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
+          <properties>
+            <property>
+              <name>listener</name>
+              <value>io.qameta.allure.junit4.AllureJunit4</value>
+            </property>
+          </properties>
+        </configuration>
         <dependencies>
           <dependency>
             <groupId>org.aspectj</groupId>
@@ -597,22 +599,38 @@
             <version>${aspectj.version}</version>
           </dependency>
         </dependencies>
-        <configuration>
-          <includes>
-            <include>**/*Test.java</include>
-            <include>**/*Spec.java</include>
-          </includes>
-          <argLine>
-            -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
-          </argLine>
-          <properties>
-            <property>
-              <name>listener</name>
-              <!--<value>ru.yandex.qatools.allure.junit.AllureRunListener</value>-->
-            </property>
-          </properties>
-        </configuration>
       </plugin>
+      <!--<plugin>-->
+        <!--<groupId>org.codehaus.mojo</groupId>-->
+        <!--<artifactId>jdepend-maven-plugin</artifactId>-->
+        <!--<version>2.0</version>-->
+      <!--</plugin>-->
+      <!--<plugin>-->
+        <!--<artifactId>maven-surefire-plugin</artifactId>-->
+        <!--<version>${surefire.version}</version>-->
+        <!--<dependencies>-->
+          <!--<dependency>-->
+            <!--<groupId>org.aspectj</groupId>-->
+            <!--<artifactId>aspectjweaver</artifactId>-->
+            <!--<version>${aspectj.version}</version>-->
+          <!--</dependency>-->
+        <!--</dependencies>-->
+        <!--<configuration>-->
+          <!--<includes>-->
+            <!--<include>**/*Test.java</include>-->
+            <!--<include>**/*Spec.java</include>-->
+          <!--</includes>-->
+          <!--<argLine>-->
+            <!-- -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar-->
+          <!--</argLine>-->
+          <!--<properties>-->
+            <!--<property>-->
+              <!--<name>listener</name>-->
+              <!--<value>ru.yandex.qatools.allure.junit.AllureRunListener</value>-->
+            <!--</property>-->
+          <!--</properties>-->
+        <!--</configuration>-->
+      <!--</plugin>-->
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>${surefire.version}</version>
@@ -657,7 +675,7 @@
           <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-to-slf4j</artifactId>
-            <version>2.10.0</version>
+            <version>2.11.0</version>
           </dependency>
           <dependency>
             <groupId>net.masterthought</groupId>
@@ -793,6 +811,30 @@
       </build>
     </profile>
     <profile>
+      <id>dependency-check</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.owasp</groupId>
+            <artifactId>dependency-check-maven</artifactId>
+            <version>3.1.1</version>
+            <configuration>
+              <failBuildOnCVSS>8</failBuildOnCVSS>
+            </configuration>
+            <executions>
+              <execution>
+                <id>dependency-check-validate</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>jacoco</id>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -802,7 +844,7 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.0</version>
+            <version>0.8.1</version>
             <executions>
               <execution>
                 <id>prepare</id>
@@ -1206,7 +1248,7 @@
       <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
-        <version>1.4.196</version>
+        <version>1.4.197</version>
       </dependency>
 
       <dependency>
@@ -1241,7 +1283,7 @@
       <dependency>
         <groupId>org.springframework.data</groupId>
         <artifactId>spring-data-commons</artifactId>
-        <version>2.0.3.RELEASE</version>
+        <version>${spring.data.jpa.version}</version>
         <exclusions>
           <exclusion>
             <groupId>org.springframework</groupId>
@@ -1253,7 +1295,7 @@
       <dependency>
         <groupId>org.jboss.classfilewriter</groupId>
         <artifactId>jboss-classfilewriter</artifactId>
-        <version>1.2.1.Final</version>
+        <version>1.2.2.Final</version>
       </dependency>
 
       <!-- org.jboss.weld:weld-api:3.0.Final -->
@@ -1350,7 +1392,7 @@
       <dependency>
         <groupId>javax.annotation</groupId>
         <artifactId>javax.annotation-api</artifactId>
-        <version>1.3.1</version>
+        <version>${javax.annotation.version}</version>
       </dependency>
 
       <dependency>
@@ -1640,7 +1682,7 @@
       <dependency>
         <groupId>org.codehaus.groovy</groupId>
         <artifactId>groovy-all</artifactId>
-        <version>2.4.13</version>
+        <version>2.4.14</version>
         <scope>test</scope>
       </dependency>
 
@@ -1676,6 +1718,12 @@
   <dependencies>
 
     <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>3.10.0</version>
+    </dependency>
+
+    <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-junit4</artifactId>
       <version>${allure.version}</version>
@@ -1689,7 +1737,7 @@
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-commons</artifactId>
-      <version>2.0.3.RELEASE</version>
+      <version>${spring.data.jpa.version}</version>
     </dependency>
 
     <dependency>
@@ -1839,12 +1887,12 @@
     <dependency>
       <groupId>javax.annotation</groupId>
       <artifactId>javax.annotation-api</artifactId>
-      <version>1.3.1</version>
+      <version>${javax.annotation.version}</version>
     </dependency>
     <dependency>
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
-      <version>2.7.7</version>
+      <version>2.7.8</version>
       <scope>compile</scope>
     </dependency>
 
@@ -2137,7 +2185,7 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>3.9.0</version>
+      <version>3.9.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
