@@ -1,9 +1,9 @@
 sudo: false
-install: true
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
+# install: true
+# addons:
+#   apt:
+#     packages:
+#       - oracle-java8-installer
 
 language: java
 
