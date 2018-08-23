@@ -21,6 +21,7 @@ import java.util.List;
 @EnableTransactionManagement
 public class AuthorIT
 {
+  @SuppressWarnings("ResultOfMethodCallIgnored")
   @Test
   @Transactional
   public void testAuthorAndUseDeclaredMethods()

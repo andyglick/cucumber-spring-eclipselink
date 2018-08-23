@@ -22,7 +22,7 @@ public class AuthorDelegateImpl implements AuthorDelegate
   @SuppressWarnings("UnusedDeclaration")
   private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-  @SuppressWarnings("SpringAutowiredFieldsWarningInspection")
+  @SuppressWarnings({"SpringAutowiredFieldsWarningInspection", "WeakerAccess"})
   @Inject
   BookDelegate bookDelegate;
 
