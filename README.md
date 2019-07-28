@@ -7,8 +7,6 @@
 
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=info.cukes%3Acucumber-spring-and-eclipselink-2018-03&metric=alert_status)
 
-[![Stories in Ready](https://badge.waffle.io/andyglick/cucumber-spring-eclipselink.png?label=ready&title=Ready)](https://waffle.io/andyglick/cucumber-spring-eclipselink?utm_source=badge)
-
 Cucumber, Spring and Eclipselink with Spring Data JPA
 =====================================================
 
@@ -20,6 +18,10 @@ byte code manipulation, at least where a JPA provider is concerned, I
 use static weaving on the JPA entities. Unfortunately that exposes all
 of the generated and not tested code to be scored against me. Oh
 well.........
+
+apparently waffle.io gave up the ghost while I wasn't looking, it may
+have been a good tool, but I don't remember using it, yet another "Oh
+well.........."
 
 .... whining completed .....
 
