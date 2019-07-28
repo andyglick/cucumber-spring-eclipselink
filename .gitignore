@@ -9,7 +9,7 @@ allure-results/
 *.iml
 *.ipr
 *.iws
-.idea
+.idea/
 
 *.log
 
@@ -24,4 +24,4 @@ cse.tgz
 cov-int/
 chronostimerdb/
 /.classpath
-/effective.pom
+/effective*.pom
