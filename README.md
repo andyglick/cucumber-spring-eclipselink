@@ -69,6 +69,9 @@ using AssertJ:
     
 Cucumber Reporting and maven-cucumber-reporting plugin produce fairly good Cucumber reports
 
+I have noticed that **QueryDSL** has some bugs and doesn't seem to be
+actively developed anymore. I have stumbled upon **blaze-persistence**
+and I may attempt to replace QueryDSL with it.
 
 **QueryDSL** provides a good deal more flexibility in querying persistent data than does JQL, allowing us to derive
 even more benefits from the use of Spring Data JPA. **(http://www.querydsl.com/)**
