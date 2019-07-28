@@ -91,8 +91,7 @@ public class AuthorDelegateImpl implements AuthorDelegate
   /**
    * start with the lists of the authors of the current book and the book to compare, if the size of the
    * lists differ then the lists don't match
-   * <p/>
-   * for lists of the same size compare the lists
+   * <p>for lists of the same size compare the lists</p>
    */
   @Override
   public boolean compareAuthorLists(List<Author> authorsOfThisBook, List<Author> authorsOfThatBook)
