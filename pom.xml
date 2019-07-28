@@ -65,6 +65,13 @@
     </pluginRepository>
   </pluginRepositories>
 
+  <scm>
+    <connection>scm:git:https://github.com/andyglick/cucumber-spring-eclipselink.git</connection>
+    <!-- <developerConnection>scm:svn:https://127.0.0.1/svn/my-project</developerConnection> -->
+    <tag>HEAD</tag>
+    <url>https://github.com/andyglick/cucumber-spring-eclipselink</url>
+  </scm>
+
   <prerequisites>
     <maven>${maven.version}</maven>
   </prerequisites>
@@ -117,7 +124,7 @@
     <skipITs>false</skipITs>
     <skipSurefireTests>true</skipSurefireTests>
     <slf4j.version>1.8.0-beta2</slf4j.version>
-    <sonar.maven.plugin.version>3.5.0.1254</sonar.maven.plugin.version>
+    <sonar.maven.plugin.version>3.6.0.1398</sonar.maven.plugin.version>
     <spring.data.jpa.version>2.1.9.RELEASE</spring.data.jpa.version>
     <springframework.version>5.1.8.RELEASE</springframework.version>
     <!--<surefire.forkMode>always</surefire.Mode>-->
