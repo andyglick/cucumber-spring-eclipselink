@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-  http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0   http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>info.cukes</groupId>
   <artifactId>cucumber-spring-and-eclipselink-2018-03</artifactId>
-  <version>1.0.3-SNAPSHOT</version>
+  <version>1.0.3</version>
   <packaging>jar</packaging>
 
   <name>cucumber-spring-and-eclipselink-2018-03</name>
@@ -68,7 +65,7 @@
   <scm>
     <connection>scm:git:https://github.com/andyglick/cucumber-spring-eclipselink.git</connection>
     <!-- <developerConnection>scm:svn:https://127.0.0.1/svn/my-project</developerConnection> -->
-    <tag>HEAD</tag>
+    <tag>t1.0.3</tag>
     <url>https://github.com/andyglick/cucumber-spring-eclipselink</url>
   </scm>
 
@@ -344,7 +341,7 @@
         <artifactId>ossindex-maven-plugin</artifactId>
         <version>3.0.1</version>
         <configuration>
-          <excludeVulnerabilityIds/>
+          <excludeVulnerabilityIds />
         </configuration>
         <executions>
           <execution>
@@ -469,7 +466,7 @@
             <requireMavenVersion>
               <version>[3.2.5,${maven.version}]</version>
             </requireMavenVersion>
-            <dependencyConvergence/>
+            <dependencyConvergence />
             <bannedDependencies>
               <searchTransitive>true</searchTransitive>
               <excludes>
@@ -604,7 +601,7 @@
           <maxmem>256m</maxmem>
           <!-- aggregated reports for multi-module projects -->
           <aggregate>true</aggregate>
-          <check/>
+          <check />
         </configuration>
       </plugin>
       <!--<plugin>-->
