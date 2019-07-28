@@ -1,0 +1,22 @@
+sudo: false
+install: true
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
+language: java
+
+# env:
+# - 
+jdk:
+  - oraclejdk8
+  
+script: mvn clean verify -P errorprone-compiler
+
+after_success:
+  - mvn clean verify jacoco:report jacoco:integration-report coveralls:report sonar:sonar
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
