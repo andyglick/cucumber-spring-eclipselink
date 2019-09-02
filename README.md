@@ -10,6 +10,27 @@
 Cucumber, Spring and Eclipselink with Spring Data JPA
 =====================================================
 
+this project makes use of dependency scanning tools, the current
+dependency list is clear of vulnerabilities
+
+on behalf of tranparency -- this is a demo project, the active code
+doesn't do very much and I wrote it along time ago -- on the other hand
+I do regular work on the project -- at some point I began using the
+allure test reporting library which executes in a build context only
+during the test, integration-test and site phases only, the dependencies
+of the allure mechanism do not execute at "normal runtime" -- adding
+dependencies on allure components added transitive dependencies on
+jackson-databind and tika-core -- if you pay a lot of attention to CVE's
+you may recognize these 2 components as ones that had demonstrated
+significant vulnerabilities
+
+the versions of these 2 dependent components have been patched, the
+vulnerabilities have been remediated  
+
+jackson--data-bind 9.3.3.3
+tika-core:2.22
+
+
 and now for some whining
 
 coveralls states that only 56% of the code has been tested. Well
