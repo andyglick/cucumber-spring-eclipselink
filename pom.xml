@@ -83,12 +83,12 @@
     <aspectj.version>1.9.4</aspectj.version>
     <bcel.version>6.3.1</bcel.version>
     <buildNumber>1</buildNumber>
-    <checkerframework.version>2.10.0</checkerframework.version>
+    <checkerframework.version>2.11.0</checkerframework.version>
     <chronos.version>1.1.1</chronos.version>
     <cucumber.jvm.version>1.2.5</cucumber.jvm.version>
     <cucumber.report.title>Cucumber w/ Spring, Spring Data JPA and Eclipselink</cucumber.report.title>
     <cucumber.reporting.version>4.9.0</cucumber.reporting.version>
-    <deltaspike.version>1.9.0</deltaspike.version>
+    <deltaspike.version>1.9.1</deltaspike.version>
     <donut.junit.adapter.version>0.2.3</donut.junit.adapter.version>
     <eclipselink.version>2.7.4</eclipselink.version>
     <errorprone.compiler.version>2.3.3</errorprone.compiler.version>
@@ -103,8 +103,8 @@
     <javassist.version>3.23.1-GA</javassist.version>
     <javax.persistence.version>2.2.1</javax.persistence.version>
     <jdepend.plugin.version>2.0</jdepend.plugin.version>
-    <jooq.version>3.11.11</jooq.version>
-    <junit.version>4.12</junit.version>
+    <jooq.version>3.12.0</jooq.version>
+    <junit.version>4.13-beta-3</junit.version>
     <logback.version>1.3.0-alpha4</logback.version>
     <maven.artifact.version>3.5.0</maven.artifact.version>
     <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
@@ -125,7 +125,7 @@
     <skipITs>false</skipITs>
     <skipSurefireTests>true</skipSurefireTests>
     <slf4j.version>2.0.0-alpha0</slf4j.version>
-    <sonar.maven.plugin.version>3.6.0.1398</sonar.maven.plugin.version>
+    <sonar.maven.plugin.version>3.6.1.1688</sonar.maven.plugin.version>
     <spring.data.jpa.version>2.1.10.RELEASE</spring.data.jpa.version>
     <springframework.version>5.1.9.RELEASE</springframework.version>
     <!--<surefire.forkMode>always</surefire.Mode>-->
@@ -1201,7 +1201,7 @@
       <dependency>
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
-        <version>1.9.3</version>
+        <version>1.9.4</version>
       </dependency>
       <dependency>
         <groupId>commons-io</groupId>
@@ -1537,41 +1537,41 @@
       <dependency>
         <groupId>org.apache.deltaspike.core</groupId>
         <artifactId>deltaspike-core-api</artifactId>
-        <version>1.9.0</version>
+        <version>${deltaspike.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.deltaspike.core</groupId>
         <artifactId>deltaspike-core-impl</artifactId>
-        <version>1.9.0</version>
+        <version>${deltaspike.version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.apache.deltaspike.modules</groupId>
         <artifactId>deltaspike-test-control-module-api</artifactId>
-        <version>1.9.0</version>
+        <version>${deltaspike.version}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.deltaspike.modules</groupId>
         <artifactId>deltaspike-test-control-module-impl</artifactId>
-        <version>1.9.0</version>
+        <version>${deltaspike.version}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.deltaspike.cdictrl</groupId>
         <artifactId>deltaspike-cdictrl-api</artifactId>
-        <version>1.9.0</version>
+        <version>${deltaspike.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.deltaspike.modules</groupId>
         <artifactId>deltaspike-jpa-module-api</artifactId>
-        <version>1.9.0</version>
+        <version>${deltaspike.version}</version>
         <scope>compile</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.deltaspike.modules</groupId>
         <artifactId>deltaspike-jpa-module-impl</artifactId>
-        <version>1.9.0</version>
+        <version>${deltaspike.version}</version>
         <scope>runtime</scope>
       </dependency>
 
@@ -1646,7 +1646,7 @@
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>28.0-jre</version>
+        <version>28.1-jre</version>
       </dependency>
 
       <dependency>
